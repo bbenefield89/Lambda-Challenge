@@ -7,7 +7,7 @@ After writing your function uncomment the matching function reference at the bot
 // 1. Write a function called helloWorld that returns the string 'Hello World!'.
 
 function helloWorld() {
-
+    return 'Hello World!';
 }
 
 /*
@@ -23,8 +23,24 @@ function helloWorld() {
              lambdaSchool(8); // returns 8
 */
 
-function lambdaSchool() {
-
+function lambdaSchool(num) {
+    const divByThree = Number.isInteger(num / 3);
+    const divByFive = Number.isInteger(num / 5);
+    const lambdaSchool = [];
+    
+    if (divByThree) {
+        lambdaSchool.push('Lambda');
+    }
+    
+    if (divByFive) {
+        lambdaSchool.push('School');
+    }
+    
+    if (!divByThree && !divByFive) {
+        return num;
+    }
+    
+    return lambdaSchool.join(' ');
 }
 
 /*
@@ -38,8 +54,24 @@ function lambdaSchool() {
              longestString(['JavaScript', 'HTML', 'CSS']); // returns 'JavaScript'
 */
 
-function longestString() {
-
+function longestString(strs) {
+  const strsArr = [];
+  
+  for (let i = 0; i < strs.length - 1; i++) {
+    if (strs[i].length > strs[i + 1].length) {
+      strsArr.push(strs[i]);
+    }
+    else if (strs[i].length < strs[i + 1].length) {
+      strsArr.shift();
+      strsArr.push(strs[i + 1]);
+    }
+    else {
+      strsArr.push(strs[i]);
+      strsArr.push(strs[i + 1]);
+    }
+  }
+  
+  return strsArr[0];
 }
 
 /*
@@ -63,9 +95,15 @@ function longestString() {
              computeUserAverageAge(users); // returns 62 (This number is rounded up from 61.6666)
 */
 
-function computeUserAverageAge() {
-
-}
+ function computeUserAverageAge(users) {
+  const arr = [];
+  
+  for (let age of users) {
+    arr.push(age.age);
+  }
+  
+  return Math.round(arr.reduce((x, y) => x + y) / users.length);
+ }
 
 module.exports = {
  helloWorld,
